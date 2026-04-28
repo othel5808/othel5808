@@ -146,6 +146,43 @@
         }
 
         /* ══════════════════════════════════════
+           ABOUT ME — Full-width strip
+        ══════════════════════════════════════ */
+        .resume-about {
+            padding: 28px 40px 26px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(135deg, #f0f6ff 0%, #fafcff 100%);
+            position: relative;
+        }
+        .resume-about .section-title { margin-bottom: 18px; }
+        .resume-about .summary-list { list-style: none; padding: 0; margin: 0; }
+        .resume-about .summary-list li {
+            font-size: 0.85rem; color: var(--text-sub); line-height: 1.75;
+            margin-bottom: 14px; word-break: keep-all;
+            display: flex; gap: 12px; align-items: flex-start;
+            padding: 12px 16px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .resume-about .summary-list li:last-child { margin-bottom: 0; }
+        .resume-about .summary-list li:hover {
+            box-shadow: 0 4px 16px rgba(59,130,246,0.08);
+            transform: translateX(3px);
+        }
+        .resume-about .summary-list li i {
+            color: var(--accent); font-size: 1.05rem;
+            margin-top: 2px; flex-shrink: 0;
+            width: 20px; text-align: center;
+        }
+        .resume-about .summary-list li b { color: var(--text-main); font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .resume-about { padding: 28px 24px; }
+        }
+
+        /* ══════════════════════════════════════
            MIDDLE — Career Chart (left) + About Me (right)
         ══════════════════════════════════════ */
         .resume-mid {
@@ -489,6 +526,31 @@
     </header>
 
     <!-- ══════════════════════════════════════
+         ABOUT ME
+    ══════════════════════════════════════ -->
+    <div class="resume-about">
+        <span class="section-title">About Me</span>
+        <ul class="summary-list">
+            <li>
+                <i class="bi bi-code-slash"></i>
+                <span><b>Python을 주력 언어</b>로 사용하며, FastAPI·Django 등의 프레임워크를 통해 안정적인 백엔드 서비스를 설계하고 구현해 왔습니다.</span>
+            </li>
+            <li>
+                <i class="bi bi-layers-half"></i>
+                <span><b>백엔드 개발과 데이터 엔지니어링</b> 양쪽 영역을 두루 경험하며, API 서버 개발부터 데이터 수집·변환·적재 파이프라인 구축까지 데이터의 흐름 전반을 다루는 역량을 쌓았습니다.</span>
+            </li>
+            <li>
+                <i class="bi bi-cloud-fill"></i>
+                <span><b>AWS 서비스를 적극적으로 활용</b>하여 업무를 수행해 왔습니다. Kinesis, Athena, OpenSearch, DMS, S3 등을 실무에 도입하여 확장 가능하고 효율적인 인프라를 구성한 경험이 있습니다.</span>
+            </li>
+            <li>
+                <i class="bi bi-rocket-takeoff-fill"></i>
+                <span>새로운 기술과 지식을 <b>배우는 것을 즐기며</b>, 맡은 일에 <b>열정과 책임감</b>을 가지고 임합니다. 문제를 정의하고 끝까지 해결해내는 과정에서 성장한다고 믿습니다.</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- ══════════════════════════════════════
          MIDDLE: Career Chart | About Me
     ══════════════════════════════════════ -->
     <div class="resume-mid">
@@ -586,6 +648,7 @@
                     <li><b>검색 엔진 고도화</b> — AWS OpenSearch 기반 도메인 특화 형태소 분석기(은전한닢) 구성 및 포스트 전문 검색 개발</li>
                     <li><b>실시간 데이터 수집</b> — FastAPI + AWS Kinesis Data Firehose 연동 사용자 행동 데이터 파이프라인 구축</li>
                     <li><b>BI 인프라 이전</b> — Redash(서비스 DB 직연결)를 Apache Superset으로 이전, 운영 DB 부하 제거</li>
+                    <li><b>주간 성능 모니터링 배치 구성</b> — AWS WAF 로그 및 CloudWatch Metrics 기반 응답 코드 분포·DB Slow Query 집계 후 Slack Webhook 자동 발송</li>
                 </ul>
                 <div class="tech-row">
                     <span class="tech-badge">Python</span><span class="tech-badge">FastAPI</span>
