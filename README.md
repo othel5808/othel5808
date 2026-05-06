@@ -63,6 +63,8 @@
 - **실시간 데이터 수집** — FastAPI + AWS Kinesis Data Firehose 연동 사용자 행동 데이터 파이프라인 구축
 - **BI 인프라 이전** — Redash(서비스 DB 직연결)를 Apache Superset으로 이전, 운영 DB 부하 제거
 - **주간 성능 모니터링 배치 구성** — AWS WAF 로그 및 CloudWatch Metrics 기반 응답 코드 분포·DB Slow Query 집계 후 Slack Webhook 자동 발송
+- **밀리 플레이스 신규 기능 개발** — 제휴 카페 할인 서비스용 내부 서비스 API 및 CMS 관리 페이지 설계·개발
+- **신규 PG 연동 및 구독권 상품 개발** — 신규 PG사(스마트로) 연동 및 Django 결제 코드 Boilerplate 패턴 리팩토링으로 확장성 확보
 
 **사용 기술:** Python, FastAPI, Kotlin, Spring Boot, MySQL, Airflow, AWS OpenSearch, AWS Athena, Kinesis, Superset
 

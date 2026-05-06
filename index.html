@@ -350,9 +350,9 @@
         .toggle-arrow { display: inline-block; transition: transform 0.25s; line-height: 1; }
         .projects-toggle.is-open .toggle-arrow { transform: rotate(180deg); }
 
-        .project-list { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+        .project-list { max-height: 0; overflow: hidden; transition: max-height 0.6s ease; }
         .project-list.is-open {
-            max-height: 3000px; margin-top: 18px;
+            max-height: 9999px; margin-top: 18px;
             border-top: 1px solid var(--border); padding-top: 16px;
         }
 
@@ -424,7 +424,7 @@
         .t-badge { background: #dcfce7; color: #15803d; }
         .a-badge { background: #fef9c3; color: #a16207; }
         .r-badge { background: #ffe4e6; color: #be123c; }
-        .k-badge { background: #ede9fe; color: #6d28d9; }
+        .l-badge { background: #ede9fe; color: #6d28d9; }
 
         /* ─── PAAR Badges (Work Experience) ─── */
         .pp-badge  { background: #fee2e2; color: #dc2626; }  /* Problem */
@@ -713,6 +713,8 @@
                     <li><b>실시간 데이터 수집</b> — FastAPI + AWS Kinesis Data Firehose 연동 사용자 행동 데이터 파이프라인 구축</li>
                     <li><b>BI 인프라 이전</b> — Redash(서비스 DB 직연결)를 Apache Superset으로 이전, 운영 DB 부하 제거</li>
                     <li><b>주간 성능 모니터링 배치 구성</b> — AWS WAF 로그 및 CloudWatch Metrics 기반 응답 코드 분포·DB Slow Query 집계 후 Slack Webhook 자동 발송</li>
+                    <li><b>밀리 플레이스 신규 기능 개발</b> — 제휴 카페 할인 서비스용 내부 서비스 API 및 CMS 관리 페이지 설계·개발</li>
+                    <li><b>신규 PG 연동 및 구독권 상품 개발</b> — 신규 PG사(스마트로) 연동 및 Django 결제 코드 Boilerplate 패턴 리팩토링으로 확장성 확보</li>
                 </ul>
                 <div class="tech-row">
                     <span class="tech-badge">Python</span><span class="tech-badge">FastAPI</span>
@@ -727,12 +729,48 @@
                     <span class="toggle-arrow"><i class="bi bi-chevron-down"></i></span>
                 </button>
                 <div class="project-list is-open">
+
+                    <!-- ① 배치 성능 최적화 -->
                     <div class="project-item">
-                        <div class="project-name">PG 정산 내역 연동 배치 구성</div>
-<div class="project-tech">
+                        <div class="project-name">배치 성능 최적화
+                            <span style="display:block;font-size:0.73rem;font-weight:500;color:var(--text-sub);margin-top:3px;letter-spacing:-0.2px;">신 카테고리 도입을 위한 배치 개선 및 데이터 마이그레이션</span>
+                        </div>
+                        <div class="project-tech">
+                            <span class="pt-badge">Airflow</span><span class="pt-badge">MySQL</span><span class="pt-badge">SQL Tuning</span>
+                        </div>
+                        <div class="star-grid" style="margin-top: 8px;">
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge s-badge">S</span> Situation</div>
+                                <p class="star-text">신규 카테고리 도입 시 기존 랭킹·검색 배치와의 충돌 우려, 랭킹 연산 배치 수행 시간이 <b>120분</b>에 달해 서비스 지연 위험 존재 개선 필요</p>
+                            </div>
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge t-badge">T</span> Task</div>
+                                <p class="star-text">기존 배치 시스템과 충돌 없이 신규 카테고리를 도입하고, 배치 성능을 개선하는 것</p>
+                            </div>
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge a-badge">A</span> Action</div>
+                                <ul class="project-desc" style="margin-top: 4px;">
+                                    <li>신규 카테고리 독립 배치 파이프라인 설계 및 <b>Airflow DAG</b> 의존성 분리</li>
+                                    <li>랭킹 연산 <b>쿼리 튜닝 및 인덱스 재설계</b>, 행렬 차원 축소로 실행 시간 단축</li>
+                                    <li>랭킹·검색 기능 지원을 위한 <b>대규모 데이터 마이그레이션</b> 수행</li>
+                                </ul>
+                            </div>
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge r-badge">R</span> Result</div>
+                                <p class="star-text">배치 수행 시간 <b>120분 → 15분</b>으로 <b>8배 단축</b>, 신규 카테고리 안정적 도입 및 랭킹·검색 서비스 정상 운영</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ② 정산 시스템 현대화 -->
+                    <div class="project-item">
+                        <div class="project-name">정산 시스템 현대화
+                            <span style="display:block;font-size:0.73rem;font-weight:500;color:var(--text-sub);margin-top:3px;letter-spacing:-0.2px;">PG 정산 내역 연동 배치 구성</span>
+                        </div>
+                        <div class="project-tech">
                             <span class="pt-badge">Prefect</span><span class="pt-badge">Spring Batch</span><span class="pt-badge">Python</span><span class="pt-badge">OAuth 2.0</span>
                         </div>
-<div class="star-grid" style="margin-top: 8px;">
+                        <div class="star-grid" style="margin-top: 8px;">
                             <div class="star-item">
                                 <div class="star-label"><span class="star-badge s-badge">S</span> Situation</div>
                                 <p class="star-text">정산의 중요성이 대두 되며, 기존의 supervisor 배치 이전 및 분리 필요성</p>
@@ -757,95 +795,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- ③ 검색 엔진 고도화 -->
                     <div class="project-item">
-                        <div class="project-name">신 카테고리 도입을 위한 배치 개선 및 데이터 마이그레이션</div>
-<div class="project-tech">
-                            <span class="pt-badge">Airflow</span><span class="pt-badge">MySQL</span><span class="pt-badge">SQL Tuning</span>
+                        <div class="project-name">검색 엔진 고도화
+                            <span style="display:block;font-size:0.73rem;font-weight:500;color:var(--text-sub);margin-top:3px;letter-spacing:-0.2px;">포스트 검색 기능 개발</span>
                         </div>
-<div class="star-grid" style="margin-top: 8px;">
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge s-badge">S</span> Situation</div>
-                                <p class="star-text">신규 카테고리 도입 시 기존 랭킹·검색 배치와의 충돌 우려, 랭킹 연산 배치 수행 시간이 <b>120분</b>에 달해 서비스 지연 위험 존재 개선 필요</p>
-                            </div>
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge t-badge">T</span> Task</div>
-                                <p class="star-text">기존 배치 시스템과 충돌 없이 신규 카테고리를 도입하고, 배치 성능을 개선하는 것</p>
-                            </div>
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge a-badge">A</span> Action</div>
-                                <ul class="project-desc" style="margin-top: 4px;">
-                                    <li>신규 카테고리 독립 배치 파이프라인 설계 및 <b>Airflow DAG</b> 의존성 분리</li>
-                                    <li>랭킹 계산을 위한 행렬 차원 축소를 통한 실행 시간 단축</li>
-                                    <li>랭킹·검색 기능 지원을 위한 <b>대규모 데이터 마이그레이션</b> 수행</li>
-                                </ul>
-                            </div>
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge r-badge">R</span> Result</div>
-                                <p class="star-text">배치 수행 시간 <b>120분 → 15분</b>으로 <b>8배 단축</b>, 신규 카테고리 안정적 도입 및 랭킹·검색 서비스 정상 운영</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-item">
-                        <div class="project-name">주간 서비스 성능 지표 모니터링 배치 구성</div>
-<div class="project-tech">
-                            <span class="pt-badge">AWS WAF</span><span class="pt-badge">CloudWatch</span><span class="pt-badge">Slack API</span>
-                        </div>
-<div class="star-grid" style="margin-top: 8px;">
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge s-badge">S</span> Situation</div>
-                                <p class="star-text">HTTP 응답 코드 분포 및 DB Slow Query에 대한 주기적 모니터링 체계가 없어 <b>서비스 이상 현상 조기 감지가 어려운</b> 상황</p>
-                            </div>
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge t-badge">T</span> Task</div>
-                                <p class="star-text">주기적인 서비스 성능 지표 수집·분석 및 자동 알림 체계 구축</p>
-                            </div>
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge a-badge">A</span> Action</div>
-                                <ul class="project-desc" style="margin-top: 4px;">
-                                    <li>AWS WAF 로그 및 CloudWatch Metrics 기반 HTTP 응답 코드 분포·DB Slow Query 수집/분석 파이프라인 구성</li>
-                                    <li>집계 결과를 주간 단위로 <b>Slack Webhook</b>으로 자동 발송하는 알림 파이프라인 구성</li>
-                                </ul>
-                            </div>
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge r-badge">R</span> Result</div>
-                                <p class="star-text">주간 성능 리포트 자동 발송 체계 완성으로 운영 이슈 조기 감지 및 팀 내 서비스 상태 공유 <b>자동화 실현</b></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-item">
-                        <div class="project-name">밀리 플레이스 신규 기능 개발</div>
-<div class="project-tech">
-                            <span class="pt-badge">Kotlin</span><span class="pt-badge">Spring Boot</span><span class="pt-badge">Open API</span>
-                        </div>
-<div class="star-grid" style="margin-top: 8px;">
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge s-badge">S</span> Situation</div>
-                                <p class="star-text">신규 기능 개발 / 짧은 개발 기간 / 관리자 도구 부재</p>
-                            </div>
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge t-badge">T</span> Task</div>
-                                <p class="star-text">제휴 카페 할인 서비스를 위한 외부 연동 API 및 CMS 관리 페이지 개발</p>
-                            </div>
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge a-badge">A</span> Action</div>
-                                <ul class="project-desc" style="margin-top: 4px;">
-                                    <li>서비스 요구사항 기반 DB 스키마 설계</li>
-                                    <li>외부 연동 <b>Open API</b> 및 CMS 관리 페이지 설계·개발</li>
-                                    <li>백엔드 담당자로서 유관 부서 간 요구사항 조율 및 일정 협의</li>
-                                </ul>
-                            </div>
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge r-badge">R</span> Result</div>
-                                <p class="star-text">밀리 플레이스 제휴 카페 할인 서비스 정상 오픈 / 관리자 페이지 구성을 통한 업무 지원</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-item">
-                        <div class="project-name">포스트 검색 기능 개발</div>
-<div class="project-tech">
+                        <div class="project-tech">
                             <span class="pt-badge">AWS OpenSearch</span><span class="pt-badge">Python</span><span class="pt-badge">NLP</span>
                         </div>
-<div class="star-grid" style="margin-top: 8px;">
+                        <div class="star-grid" style="margin-top: 8px;">
                             <div class="star-item">
                                 <div class="star-label"><span class="star-badge s-badge">S</span> Situation</div>
                                 <p class="star-text">포스트의 검색 기능 개발</p>
@@ -868,40 +827,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- ④ 실시간 데이터 수집 -->
                     <div class="project-item">
-                        <div class="project-name">신규 PG 연동 및 구독권 상품 개발</div>
-<div class="project-tech">
-                            <span class="pt-badge">Python</span><span class="pt-badge">Django</span><span class="pt-badge">Payment API</span>
+                        <div class="project-name">실시간 데이터 수집
+                            <span style="display:block;font-size:0.73rem;font-weight:500;color:var(--text-sub);margin-top:3px;letter-spacing:-0.2px;">사용자 활동 데이터 수집 파이프라인 구성</span>
                         </div>
-<div class="star-grid" style="margin-top: 8px;">
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge s-badge">S</span> Situation</div>
-                                <p class="star-text">신규 PG사(스마트로) 도입이 필요했으나, 기존 Django 결제 코드의 <b>낮은 확장성</b>으로 PG사 추가 시마다 대규모 수정이 필요한 구조</p>
-                            </div>
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge t-badge">T</span> Task</div>
-                                <p class="star-text">신규 PG사 연동과 동시에 결제 코드 구조를 개선하여 향후 확장성 확보</p>
-                            </div>
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge a-badge">A</span> Action</div>
-                                <ul class="project-desc" style="margin-top: 4px;">
-                                    <li>신규 PG사(스마트로) 결제 API 연동</li>
-                                    <li>Django 결제 API를 <b>Boilerplate 패턴</b>으로 리팩토링하여 확장성 개선</li>
-                                    <li>PG 추가에 따른 프로모션 구독권 상품 관련 API 개발</li>
-                                </ul>
-                            </div>
-                            <div class="star-item">
-                                <div class="star-label"><span class="star-badge r-badge">R</span> Result</div>
-                                <p class="star-text">신규 PG사 연동 완료 및 결제 코드 확장 구조 확립으로 향후 PG사 추가 시 <b>개발 비용 절감</b></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-item">
-                        <div class="project-name">사용자 활동 데이터 수집 파이프라인 구성</div>
-<div class="project-tech">
+                        <div class="project-tech">
                             <span class="pt-badge">FastAPI</span><span class="pt-badge">AWS Kinesis</span><span class="pt-badge">AWS Athena</span><span class="pt-badge">S3</span>
                         </div>
-<div class="star-grid" style="margin-top: 8px;">
+                        <div class="star-grid" style="margin-top: 8px;">
                             <div class="star-item">
                                 <div class="star-label"><span class="star-badge s-badge">S</span> Situation</div>
                                 <p class="star-text">사용자 행동 데이터를 실시간으로 수집·분석할 인프라가 없어 <b>데이터 기반 의사결정과 서비스 개선에 한계</b>가 있었음</p>
@@ -925,12 +860,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- ⑤ BI 인프라 이전 -->
                     <div class="project-item">
-                        <div class="project-name">회원 지표 체계 수립</div>
-<div class="project-tech">
+                        <div class="project-name">BI 인프라 이전
+                            <span style="display:block;font-size:0.73rem;font-weight:500;color:var(--text-sub);margin-top:3px;letter-spacing:-0.2px;">회원 지표 체계 수립</span>
+                        </div>
+                        <div class="project-tech">
                             <span class="pt-badge">AWS DMS</span><span class="pt-badge">AWS Athena</span><span class="pt-badge">Apache Superset</span><span class="pt-badge">Redash</span>
                         </div>
-<div class="star-grid" style="margin-top: 8px;">
+                        <div class="star-grid" style="margin-top: 8px;">
                             <div class="star-item">
                                 <div class="star-label"><span class="star-badge s-badge">S</span> Situation</div>
                                 <p class="star-text">회원/구독 지표의 정의 불일치 및 데이터 오류로 IR 대응 시 <b>신뢰할 수 있는 수치 제공 불가</b>, Redash가 운영 DB에 직연결되어 서비스 부하 야기</p>
@@ -953,6 +892,98 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- ⑥ 주간 성능 모니터링 배치 구성 -->
+                    <div class="project-item">
+                        <div class="project-name">주간 성능 모니터링 배치 구성
+                            <span style="display:block;font-size:0.73rem;font-weight:500;color:var(--text-sub);margin-top:3px;letter-spacing:-0.2px;">주간 서비스 성능 지표 수집 및 Slack 자동 알림</span>
+                        </div>
+                        <div class="project-tech">
+                            <span class="pt-badge">AWS WAF</span><span class="pt-badge">CloudWatch</span><span class="pt-badge">Slack API</span>
+                        </div>
+                        <div class="star-grid" style="margin-top: 8px;">
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge s-badge">S</span> Situation</div>
+                                <p class="star-text">HTTP 응답 코드 분포 및 DB Slow Query에 대한 주기적 모니터링 체계가 없어 <b>서비스 이상 현상 조기 감지가 어려운</b> 상황</p>
+                            </div>
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge t-badge">T</span> Task</div>
+                                <p class="star-text">주기적인 서비스 성능 지표 수집·분석 및 자동 알림 체계 구축</p>
+                            </div>
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge a-badge">A</span> Action</div>
+                                <ul class="project-desc" style="margin-top: 4px;">
+                                    <li>AWS WAF 로그 및 CloudWatch Metrics 기반 HTTP 응답 코드 분포·DB Slow Query 수집/분석 파이프라인 구성</li>
+                                    <li>집계 결과를 주간 단위로 <b>Slack Webhook</b>으로 자동 발송하는 알림 파이프라인 구성</li>
+                                </ul>
+                            </div>
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge r-badge">R</span> Result</div>
+                                <p class="star-text">주간 성능 리포트 자동 발송 체계 완성으로 운영 이슈 조기 감지 및 팀 내 서비스 상태 공유 <b>자동화 실현</b></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 기타: 밀리 플레이스 신규 기능 개발 -->
+                    <div class="project-item">
+                        <div class="project-name">밀리 플레이스 신규 기능 개발</div>
+                        <div class="project-tech">
+                            <span class="pt-badge">Kotlin</span><span class="pt-badge">Spring Boot</span>
+                        </div>
+                        <div class="star-grid" style="margin-top: 8px;">
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge s-badge">S</span> Situation</div>
+                                <p class="star-text">신규 기능 개발 / 짧은 개발 기간 / 관리자 도구 부재</p>
+                            </div>
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge t-badge">T</span> Task</div>
+                                <p class="star-text">제휴 카페 할인 서비스를 위한 내부 서비스 API 및 CMS 관리 페이지 개발</p>
+                            </div>
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge a-badge">A</span> Action</div>
+                                <ul class="project-desc" style="margin-top: 4px;">
+                                    <li>서비스 요구사항 기반 DB 스키마 설계</li>
+                                    <li>제휴 카페 할인 서비스용 <b>내부 서비스 API</b> 및 CMS 관리 페이지 설계·개발</li>
+                                    <li>백엔드 담당자로서 유관 부서 간 요구사항 조율 및 일정 협의</li>
+                                </ul>
+                            </div>
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge r-badge">R</span> Result</div>
+                                <p class="star-text">밀리 플레이스 제휴 카페 할인 서비스 정상 오픈 / 관리자 페이지 구성을 통한 업무 지원</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 기타: 신규 PG 연동 및 구독권 상품 개발 -->
+                    <div class="project-item">
+                        <div class="project-name">신규 PG 연동 및 구독권 상품 개발</div>
+                        <div class="project-tech">
+                            <span class="pt-badge">Python</span><span class="pt-badge">Django</span><span class="pt-badge">Payment API</span>
+                        </div>
+                        <div class="star-grid" style="margin-top: 8px;">
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge s-badge">S</span> Situation</div>
+                                <p class="star-text">신규 PG사(스마트로) 도입이 필요했으나, 기존 Django 결제 코드의 <b>낮은 확장성</b>으로 PG사 추가 시마다 대규모 수정이 필요한 구조</p>
+                            </div>
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge t-badge">T</span> Task</div>
+                                <p class="star-text">신규 PG사 연동과 동시에 결제 코드 구조를 개선하여 향후 확장성 확보</p>
+                            </div>
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge a-badge">A</span> Action</div>
+                                <ul class="project-desc" style="margin-top: 4px;">
+                                    <li>신규 PG사(스마트로) 결제 API 연동</li>
+                                    <li>Django 결제 API를 <b>Boilerplate 패턴</b>으로 리팩토링하여 확장성 개선</li>
+                                    <li>PG 추가에 따른 프로모션 구독권 상품 관련 API 개발</li>
+                                </ul>
+                            </div>
+                            <div class="star-item">
+                                <div class="star-label"><span class="star-badge r-badge">R</span> Result</div>
+                                <p class="star-text">신규 PG사 연동 완료 및 결제 코드 확장 구조 확립으로 향후 PG사 추가 시 <b>개발 비용 절감</b></p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div><!-- /밀리의 서재 -->
 
@@ -1082,7 +1113,7 @@
                         <p class="star-text">수동 작업 대비 콘텐츠 제작 시간을 대폭 단축한 <b>자동화 프로토타입 완성</b> 및 디스코드를 통한 모바일 제어 환경 확보.</p>
                     </div>
                     <div class="star-item">
-                        <div class="star-label"><span class="star-badge k-badge">K</span> Takeaway</div>
+                        <div class="star-label"><span class="star-badge l-badge">L</span> Learnings</div>
                         <ul class="project-desc" style="margin-top: 4px;">
                             <li><b>외부 의존성 관리</b> — n8n 업데이트 등 외부 환경 변화에 따른 시스템 가용성 유지의 중요성을 체감</li>
                             <li><b>후처리 공정의 필요성</b> — AI 생성 영상의 자연스러움을 극대화하기 위해 기술적 자동화 외에도 세밀한 후처리 고도화가 필요함을 확인</li>
@@ -1128,7 +1159,7 @@
                         <p class="star-text">보안 이슈가 없는 <b>완전 로컬 기반 에이전트 작동 확인</b>. 다만, 장비 성능에 따른 속도 편차와 고사양 서버 유휴 상태 유지에 따른 비용 효율성 한계 도출.</p>
                     </div>
                     <div class="star-item">
-                        <div class="star-label"><span class="star-badge k-badge">K</span> Takeaway</div>
+                        <div class="star-label"><span class="star-badge l-badge">L</span> Learnings</div>
                         <ul class="project-desc" style="margin-top: 4px;">
                             <li><b>엣지 컴퓨팅 접근 방식</b> — 단일 고사양 서버 의존 방식 대신, 모바일·저전력 기기 기반 경량 모델(SLM)을 활용한 분산 처리 아키텍처의 필요성 인식</li>
                             <li><b>비용 최적화 전략</b> — 네트워크 기반 기기 간 리소스 공유 및 엣지 컴퓨팅 접목 시, 보안성을 유지하면서 인프라 비용을 최소화하는 효율적인 AI 시스템 설계가 가능할 것으로 판단</li>
